@@ -3,7 +3,6 @@ import es6Promise from 'es6-promise';
 import dotenv from 'dotenv';
 
 dotenv.config();
-
 mongoose.promise = es6Promise;
 
 const dbOptions = {

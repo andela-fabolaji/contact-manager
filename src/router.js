@@ -6,15 +6,15 @@ const routerFn = router => {
   router.route('/')
     .get(asyncWrap(Contacts.index))
     .post(asyncWrap(Contacts.newContact));
+
+  // search
+  router.get('/search', asyncWrap(Contacts.search));
   
   // specific resources
   router.route('/:id')
     .get(asyncWrap(Contacts.find))
     .put(asyncWrap(Contacts.update))
     .delete(asyncWrap(Contacts.delete));
-  
-  // search
-  router.get('/search', asyncWrap(Contacts.search));
 
   // undefined routes
   router.all('*', () => {
