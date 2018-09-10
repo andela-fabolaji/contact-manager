@@ -5,9 +5,13 @@ import dotenv from 'dotenv';
 dotenv.config();
 mongoose.promise = es6Promise;
 
+const dbName = process.env.NODE_ENV === 'development'
+  ? process.env.DB_NAME
+  : process.env.DB_TEST_NAME;
+
 const dbOptions = {
   useNewUrlParser: true,
-  dbName: process.env.DB_NAME,
+  dbName,
   connectTimeoutMS: 1000,
   socketTimeoutMS: 45000,
   poolSize: 10

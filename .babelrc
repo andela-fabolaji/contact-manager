@@ -2,6 +2,9 @@
   "presets": ["@babel/env"],
   "plugins": [
     "@babel/plugin-transform-literals",
-    "@babel/plugin-proposal-object-rest-spread"
+    "@babel/plugin-proposal-object-rest-spread",
+    ["@babel/plugin-transform-runtime", {
+      "regenerator": true
+    }]
   ]
 }
