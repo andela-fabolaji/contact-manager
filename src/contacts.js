@@ -130,8 +130,6 @@ class Contacts {
   static async search(req, res, next) {
     try {
       const { query, options } = Contacts.queryBuilder(req.query);
-      console.log('query', JSON.stringify(query, null, 2));
-      console.log('options', JSON.stringify(options, null, 2));
       const result = await Contact.find(query, null, options).exec();
 
       if (result) {
