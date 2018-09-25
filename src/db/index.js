@@ -1,2 +1,3 @@
 export { db } from './db';
-export { Contact } from './model';
+export { Contact } from './contact';
+export { Category } from './category';

@@ -15,7 +15,7 @@ const server = http.createServer(app);
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use('/api', router(express.Router()));
+app.use(router(express.Router()));
 app.use(globalErrorHandler);
 
 server.listen(port, err => (

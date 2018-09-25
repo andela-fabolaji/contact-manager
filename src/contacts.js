@@ -1,4 +1,4 @@
-import { Contact } from './db';
+import { Contact, Category } from './db';
 
 class Contacts {
   /**
@@ -9,7 +9,7 @@ class Contacts {
    */
   static async index(req, res, next) {
     try {
-      const contacts = await Contact.find({}).exec();
+      const contacts = await Contact.find({}).populate({ path: 'category', select: 'name', model: Category });
       let response = {
         message: 'Contacts successfully retrieved',
         data: contacts,
@@ -79,12 +79,14 @@ class Contacts {
    */
   static async update(req, res, next) {
     try {
-      const updatedContact = await Contact.findOneAndUpdate({ _id: req.params.id }, req.body);
+      const populateQuery = { path: 'category', select: 'name', model: Category };
+      const updatedContact = await Contact.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
+      const contact = await Contact.findById(updatedContact._id).populate(populateQuery);
       
-      if (updatedContact) {
+      if (contact) {
         res.status(200).send({
           message: 'Successfully updated',
-          data: updatedContact
+          data: contact
         });
       } else {
         res.status(404).send({

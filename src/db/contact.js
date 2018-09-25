@@ -1,6 +1,10 @@
 import mongoose from 'mongoose';
 
 const contactSchema = new mongoose.Schema({
+  _id: {
+    type: mongoose.Schema.Types.ObjectId,
+    auto: true
+  },
   name: {
     type: String,
     validate: {
@@ -27,6 +31,10 @@ const contactSchema = new mongoose.Schema({
     unique: true
   },
   address: String,
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Category'
+  },
   createdAt: {
     type: Date,
     default: Date.now
